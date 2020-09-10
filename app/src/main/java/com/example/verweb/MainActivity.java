@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,8 +21,18 @@ public class MainActivity extends AppCompatActivity {
 
         webToShow = findViewById(R.id.url);
 
-        EventoTeclado eTeclado = new EventoTeclado();
-        webToShow.setOnEditorActionListener(eTeclado);
+        webToShow.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                //If the keyEvent is a key-down event on the "enter" button
+                if ((keyEvent.getAction()==KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)){
+                    goTo(null);
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     public void goTo(View view){
@@ -47,21 +56,5 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    public class EventoTeclado implements TextView.OnEditorActionListener {
-        @Override
-        public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-            if (i== EditorInfo.IME_ACTION_SEND){
-                goTo(null);
-            }
-            return false;
-        }
 
-/*        @Override
-        public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-            if (i== EditorInfo.IME_ACTION_DONE){
-                reset(null);
-            }
-            return false;
-        }*/
-    }
 }
