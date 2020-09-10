@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         webToShow = findViewById(R.id.url);
+
+        EventoTeclado eTeclado = new EventoTeclado();
+        webToShow.setOnEditorActionListener(eTeclado);
     }
 
     public void goTo(View view){
@@ -40,5 +45,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void closeApp(View view){
         finish();
+    }
+
+    public class EventoTeclado implements TextView.OnEditorActionListener {
+        @Override
+        public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+            if (i== EditorInfo.IME_ACTION_SEND){
+                goTo(null);
+            }
+            return false;
+        }
+
+/*        @Override
+        public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+            if (i== EditorInfo.IME_ACTION_DONE){
+                reset(null);
+            }
+            return false;
+        }*/
     }
 }
