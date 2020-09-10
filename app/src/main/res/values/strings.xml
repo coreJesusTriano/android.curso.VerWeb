@@ -3,4 +3,6 @@
     <string name="ingresaWeb">Ingrese página Web:</string>
     <string name="ir">Ir</string>
     <string name="volver">Volver</string>
+    <string name="consejo">Debes ingresar la dirección de la web antes de poder ir a ella.</string>
+    <string name="exit">Salir</string>
 </resources>

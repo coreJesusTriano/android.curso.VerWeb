@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/label_ingrese"
+        android:id="@+id/labelIngrese"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:labelFor="@id/url"
         android:text="@string/ingresaWeb"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,27 +24,48 @@
         app:layout_constraintVertical_bias="0.103" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
+        android:importantForAutofill="no"
+        android:inputType="textUri"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_ingrese" />
+        app:layout_constraintTop_toBottomOf="@+id/labelIngrese" />
 
     <Button
-        android:id="@+id/btn_ir"
+        android:id="@+id/btnGo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:onClick="goTo"
         android:text="@string/ir"
-        android:onClick="openActivityShowWeb"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="@+id/url"
+        app:layout_constraintTop_toBottomOf="@+id/url" />
+
+    <TextView
+        android:id="@+id/advertencia"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/consejo"
+        android:textColor="@color/colorWarnings"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGo" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="closeApp"
+        android:text="@string/exit"
+        app:layout_constraintStart_toStartOf="@+id/url"
+        app:layout_constraintTop_toTopOf="@+id/btnGo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
