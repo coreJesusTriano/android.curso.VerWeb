@@ -17,6 +17,7 @@ public class ShowWebActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_web);
         myWebView = (WebView) findViewById(R.id.webView);
+        // Recuperamos la web a la que queremos ir
         Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 this.web = bundle.getString("direccion");
@@ -24,7 +25,7 @@ public class ShowWebActivity extends AppCompatActivity {
                 this.web = "google.es";
             }
         myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl("http://"+web);
+        myWebView.loadUrl("http://"+this.web);
     }
 
 
